@@ -1,0 +1,320 @@
+export const ru = {
+  common: {
+    title: 'Документация FABRICBOT ECOSYSTEM',
+    footer: '© 2025 FABRICBOT ECOSYSTEM. Все права защищены.',
+    footerSwagger: 'Попробовать API в Swagger UI',
+    backToHome: '← Назад к главной',
+    pageNotFound: 'Страница не найдена',
+    pageNotFoundDesc: 'Документация для этой страницы еще не создана.',
+  },
+  home: {
+    hero: {
+      title: 'Добро пожаловать в документацию FABRICBOT ECOSYSTEM',
+      description: 'Полное руководство по использованию и интеграции с платформой FABRICBOT ECOSYSTEM',
+    },
+    sections: {
+      gettingStarted: {
+        title: 'Начало работы',
+        description: 'Быстрый старт с Integration API',
+      },
+      integrationAPI: {
+        title: 'Integration API',
+        description: 'API для интеграции платежей в ваше приложение',
+      },
+      testPayments: {
+        title: 'Тестовые платежи',
+        description: 'Примеры и инструкции для тестирования API',
+      },
+    },
+  },
+  gettingStarted: {
+    title: 'Начало работы',
+    intro: {
+      title: 'Введение',
+      text: 'Integration API позволяет внешним приложениям интегрировать платежи через Telegram приложение FABRICBOT ECOSYSTEM. Пользователи могут оплачивать товары и услуги используя свой внутренний баланс в приложении.',
+    },
+    quickStart: {
+      title: 'Быстрый старт',
+      step1: {
+        title: '1. Регистрация',
+        text: 'Для начала работы необходимо зарегистрироваться через Telegram бота.',
+      },
+      step2: {
+        title: '2. Создание API ключа',
+        text: 'Перейдите в раздел Editor → API Ключи в Telegram приложении и создайте API ключ для доступа к API.',
+      },
+      step3: {
+        title: '3. Первая интеграция',
+        text: 'Используйте наш Integration API для создания платежных запросов и управления реферальной программой.',
+      },
+    },
+    nextSteps: {
+      title: 'Следующие шаги',
+      item1: 'Изучите Integration API документацию',
+      item2: 'Создайте свой первый платежный запрос',
+      item3: 'Настройте webhook для получения уведомлений',
+    },
+  },
+  integrationAPI: {
+    title: 'Integration API',
+    overview: {
+      title: 'Обзор',
+      text: 'Integration API позволяет внешним приложениям интегрировать платежи через Telegram приложение FABRICBOT ECOSYSTEM. Пользователи могут оплачивать товары и услуги используя свой внутренний баланс в приложении.',
+    },
+    baseUrl: {
+      title: 'Базовый URL',
+      production: 'Production:',
+      development: 'Development:',
+    },
+    auth: {
+      title: 'Аутентификация',
+      text: 'Все запросы требуют API ключ разработчика в заголовке:',
+      note: 'API ключ можно получить в разделе Editor → API Ключи в Telegram приложении.',
+    },
+    requestSigning: {
+      title: 'Подпись запросов',
+      text: 'Для дополнительной безопасности рекомендуется подписывать запросы с помощью HMAC-SHA256. Подпись опциональна, но настоятельно рекомендуется для production окружений.',
+      howToSign: {
+        title: 'Как подписать запрос',
+        step1: 'Создайте каноническую JSON строку из тела запроса (ключи отсортированы, без пробелов)',
+        step2: 'Вычислите HMAC-SHA256 подпись используя ваш API ключ как секрет',
+        step3: 'Добавьте подпись в заголовок X-Request-Signature',
+      },
+      important: {
+        title: 'Важно о подписи',
+        fieldsNote: 'Подпись вычисляется от ВСЕХ полей, которые вы отправляете в теле запроса. Если вы отправляете только amount и webhookUrl, подпись должна быть вычислена только от этих полей. Если добавляете metadata или isTest, эти поля также должны быть включены в подпись.',
+        canonicalFormat: 'Используйте канонический формат JSON: отсортированные ключи, без пробелов. Это гарантирует, что подпись будет одинаковой независимо от порядка полей в вашем коде.',
+      },
+      example: {
+        title: 'Пример подписи запроса',
+        description: 'Пример генерации подписи на разных языках:',
+      },
+      webhookSigning: {
+        title: 'Проверка подписи webhook уведомлений',
+        text: 'Каждый webhook запрос, который вы получаете, содержит заголовок X-Webhook-Signature с HMAC-SHA256 подписью. Вы должны проверять эту подпись для подтверждения подлинности запроса.',
+        example: 'Пример проверки подписи webhook:',
+      },
+    },
+    howItWorks: {
+      title: 'Как это работает',
+      step1: 'Ваше приложение создает платежный запрос через API',
+      step2: 'Получает Telegram deep link для оплаты',
+      step3: 'Перенаправляет пользователя по этой ссылке',
+      step4: 'Пользователь открывает Telegram приложение с модальным окном оплаты',
+      step5: 'После подтверждения/отклонения на ваш webhook URL отправляется уведомление',
+    },
+    endpoints: {
+      title: 'Endpoints',
+      create: {
+        title: 'POST /payment-request/create',
+        description: 'Создает новый платежный запрос и возвращает Telegram deep link.',
+        requestTitle: 'Запрос:',
+        responseSuccessTitle: 'Ответ (успех):',
+        responseErrorTitle: 'Ответ (ошибка):',
+        paramsTitle: 'Параметры запроса:',
+        paramAmount: 'Сумма платежа в FBC (минимум 1)',
+        paramWebhookUrl: 'URL для отправки webhook уведомления (HTTPS рекомендуется)',
+        paramDescription: 'Описание платежа (макс. 500 символов)',
+        paramMetadata: 'JSON строка с дополнительными данными (макс. 200 символов)',
+        paramIdempotencyKey: 'Ключ для идемпотентности запросов (макс. 128 символов)',
+        paramIsTest: 'Флаг тестового платежа. Если `true`, платеж не будет списывать баланс и не обновит статистику, но пройдет полный цикл обработки и отправит webhook',
+        tableHeader: {
+          parameter: 'Параметр',
+          type: 'Тип',
+          required: 'Обязательный',
+          description: 'Описание',
+        },
+        tableValues: {
+          yes: 'Да',
+          no: 'Нет',
+        },
+      },
+      testWebhook: {
+        title: 'POST /payment-request/webhook/test',
+        description: 'Проверяет доступность webhook URL перед созданием платежного запроса.',
+        requestTitle: 'Запрос:',
+        responseTitle: 'Ответ:',
+      },
+      status: {
+        title: 'GET /payment-request/status/:requestId',
+        description: 'Получает статус платежного запроса и информацию о доставке webhook.',
+        requestTitle: 'Запрос:',
+        responseTitle: 'Ответ:',
+      },
+    },
+    webhooks: {
+      title: 'Webhook уведомления',
+      text: 'После обработки платежа пользователем (подтверждение/отклонение) на указанный webhookUrl отправляется POST запрос.',
+      formatTitle: 'Формат webhook:',
+      statusesTitle: 'Статусы:',
+      statusApproved: 'платеж подтвержден',
+      statusRejected: 'платеж отклонен',
+      statusExpired: 'истек срок действия запроса',
+      securityTitle: 'Безопасность webhook:',
+      securityText: 'Каждый webhook запрос содержит заголовок X-Webhook-Signature с HMAC-SHA256 подписью payload. Всегда проверяйте подпись для подтверждения подлинности запроса.',
+      retryTitle: 'Retry механизм:',
+      retryText: 'Webhook отправляется с автоматическими повторными попытками (до 5 раз) с exponential backoff при временных ошибках.',
+    },
+    examples: {
+      title: 'Примеры кода',
+      jsTitle: 'JavaScript/TypeScript',
+      pythonTitle: 'Python',
+      curlTitle: 'cURL',
+    },
+    testData: {
+      title: 'Тестовые данные',
+      text: 'Для тестирования можно использовать следующие данные:',
+      apiKey: 'Тестовый API ключ:',
+      apiKeyNote: 'Получите в разделе Editor → API Ключи в Telegram приложении',
+      webhookUrl: 'Тестовый webhook URL:',
+      webhookUrlNote: 'Используйте сервис типа webhook.site для тестирования или настройте локальный туннель через ngrok',
+      exampleTitle: 'Пример тестового запроса:',
+    },
+    swagger: {
+      title: 'Swagger документация',
+      text: 'Интерактивная документация доступна по адресу:',
+      linkText: 'Открыть Swagger UI',
+      note: 'Там вы можете протестировать все endpoints в реальном времени.',
+    },
+  },
+  testPayments: {
+    title: 'Тестовые платежи',
+    overview: {
+      title: 'Обзор',
+      text: 'Эта страница содержит примеры и инструкции для тестирования Integration API. Используйте эти данные для проверки работы вашей интеграции перед переходом в production.',
+    },
+    testData: {
+      title: 'Тестовые данные',
+      apiKey: {
+        title: 'Тестовый API ключ',
+        step1: 'Откройте Telegram приложение FABRICBOT ECOSYSTEM',
+        step2: 'Перейдите в раздел Editor → API Ключи',
+        step3: 'Создайте новый API ключ',
+        step4: 'Скопируйте ключ и используйте его в заголовке X-API-Key',
+      },
+      webhookUrl: {
+        title: 'Тестовый webhook URL',
+        text: 'Для тестирования webhook уведомлений можно использовать следующие сервисы:',
+        webhookSite: 'Генерирует уникальный URL для получения webhook запросов. Просто скопируйте URL и используйте его как webhookUrl.',
+        ngrok: 'Создает туннель к вашему локальному серверу. Полезно для тестирования на локальной машине.',
+        requestBin: 'Альтернативный сервис для тестирования webhook запросов.',
+      },
+    },
+    examples: {
+      title: 'Интерактивные примеры',
+      text: 'Попробуйте выполнить запросы прямо здесь, введя ваш API ключ и данные:',
+      example1: {
+        title: '1. Простой платежный запрос',
+        description: 'Минимальный запрос с обязательными полями: amount и webhookUrl',
+      },
+      example2: {
+        title: '2. Платеж с описанием',
+        description: 'Запрос с описанием, которое увидит пользователь в модальном окне оплаты',
+      },
+      example3: {
+        title: '3. Платеж с метаданными',
+        description: 'Запрос с метаданными, которые будут переданы в webhook уведомлении',
+      },
+      example4: {
+        title: '4. Платеж с idempotency key',
+        description: 'Запрос с idempotencyKey - при повторной отправке с тем же ключом вернется тот же результат',
+      },
+      example5: {
+        title: '5. Тестовый платеж (без списания баланса)',
+        description: 'Платеж с флагом isTest: true. Баланс не списывается, статистика не обновляется, но webhook отправляется как обычно',
+      },
+      example6: {
+        title: '6. Проверка webhook URL',
+        description: 'Проверка доступности webhook URL. Убедитесь, что URL доступен и отвечает статусом 200-299',
+      },
+      example7: {
+        title: '7. Проверка статуса платежа',
+        description: 'Проверка статуса платежного запроса. Введите ID запроса из ответа создания платежа.',
+      },
+    },
+    curl: {
+      title: 'Тестирование с cURL',
+      createTitle: 'Создание платежного запроса',
+      testWebhookTitle: 'Проверка webhook URL',
+      statusTitle: 'Проверка статуса платежа',
+    },
+    js: {
+      title: 'Тестирование с JavaScript/TypeScript',
+    },
+    python: {
+      title: 'Тестирование с Python',
+    },
+    responses: {
+      title: 'Ожидаемые ответы',
+      successTitle: 'Успешный ответ',
+      validationErrorTitle: 'Ошибка валидации',
+      authErrorTitle: 'Ошибка аутентификации',
+    },
+    webhookTesting: {
+      title: 'Тестирование webhook уведомлений',
+      formatTitle: 'Формат webhook запроса',
+      text: 'После подтверждения или отклонения платежа на ваш webhook URL будет отправлен POST запрос:',
+      statusesTitle: 'Статусы платежа',
+      statusApproved: 'платеж подтвержден пользователем',
+      statusRejected: 'платеж отклонен пользователем',
+      statusExpired: 'истек срок действия платежного запроса (30 минут)',
+    },
+    checklist: {
+      title: 'Чек-лист для тестирования',
+      item1: 'Создан API ключ в Telegram приложении',
+      item2: 'Настроен webhook URL (webhook.site или ngrok)',
+      item3: 'Протестирован endpoint создания платежного запроса',
+      item4: 'Проверена валидация данных (минимальная сумма, формат URL)',
+      item5: 'Протестирован endpoint проверки webhook URL',
+      item6: 'Проверена обработка ошибок (неверный API ключ, невалидные данные)',
+      item7: 'Протестирован полный цикл: создание → оплата → webhook уведомление',
+      item8: 'Проверена проверка подписи webhook (X-Webhook-Signature)',
+      item9: 'Протестирован endpoint получения статуса платежа',
+      item10: 'Проверена идемпотентность запросов (idempotencyKey)',
+    },
+    commonIssues: {
+      title: 'Частые проблемы',
+      issue1: {
+        title: 'Ошибка "Developer API key is required"',
+        cause: 'API ключ не передан или передан в неправильном формате.',
+        solution: 'Убедитесь, что заголовок X-API-Key присутствует и содержит корректный ключ.',
+      },
+      issue2: {
+        title: 'Ошибка "Webhook URL is not accessible"',
+        cause: 'Webhook URL недоступен или не отвечает корректно.',
+        solution: 'Проверьте доступность URL, используйте HTTPS в production, убедитесь что сервер возвращает статус 200-299.',
+      },
+      issue3: {
+        title: 'Webhook не приходит',
+        cause: 'Пользователь не подтвердил/отклонил платеж, или webhook URL недоступен.',
+        solution: 'Проверьте статус платежа через endpoint /status, убедитесь что пользователь обработал платеж в Telegram приложении.',
+      },
+    },
+    swagger: {
+      title: 'Swagger UI для тестирования',
+      text: 'Для интерактивного тестирования API используйте Swagger UI:',
+      linkText: 'Открыть Swagger UI',
+      note: 'Swagger UI позволяет протестировать все API endpoints интерактивно без написания кода.',
+      features: {
+        title: 'В Swagger UI вы можете:',
+        item1: 'Ввести ваш API ключ один раз',
+        item2: 'Протестировать все endpoints в реальном времени',
+        item3: 'Увидеть примеры запросов и ответов',
+        item4: 'Проверить схемы данных',
+      },
+    },
+  },
+  interactive: {
+    apiKey: 'API Key (X-API-Key)',
+    apiKeyPlaceholder: 'Введите ваш API ключ',
+    requestBody: 'Тело запроса (JSON)',
+    requestBodyPlaceholder: '{"amount": 10, "webhookUrl": "https://..."}',
+    submit: 'Выполнить запрос',
+    submitting: 'Отправка...',
+    error: 'Ошибка:',
+    response: 'Ответ',
+    expand: '▶',
+    collapse: '▼',
+  },
+};
+

@@ -1,0 +1,47 @@
+@use './variables' as *;
+@use './ScrollNavigation.scss' as *;
+@use './Header.scss' as *;
+@use './Checklist.scss' as *;
+@use './Sidebar.scss' as *;
+@use './SidebarToggle.scss' as *;
+
+* {
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: $color-bg;
+    scrollbar-width: thin;
+    scrollbar-color: $color-border transparent;
+
+    [data-theme='dark'] & {
+        background-color: var(--color-bg);
+        scrollbar-color: var(--color-border) transparent;
+    }
+}
+
+body {
+    background-color: $color-bg;
+    margin: 0;
+    padding: 0;
+    font-family: $font-primary;
+    color: $color-text-primary;
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    [data-theme='dark'] & {
+        background-color: var(--color-bg);
+        color: var(--color-text-primary);
+    }
+}
+
+// Разрешаем выделение текста в документации
+p, h1, h2, h3, h4, h5, h6, li, code, pre {
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+

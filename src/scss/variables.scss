@@ -1,0 +1,46 @@
+// Цветовая палитра (светлая тема)
+$color-bg: #ffffff;
+$color-surface: #fafbfc;
+$color-card: #ffffff;
+$color-border: #e6e8ec;
+
+// Текстовые цвета (светлая тема)
+$color-text-primary: #111827;
+$color-text-secondary: #6b7280;
+
+// Брендовые цвета (зеленая палитра)
+$color-brand-50: #ecfdf5;
+$color-brand-100: #d1fae5;
+$color-brand-200: #a7f3d0;
+$color-brand-300: #6ee7b7;
+$color-brand-400: #34d399;
+$color-brand-500: #10b981;
+$color-brand-600: #059669;
+$color-brand-700: #047857;
+
+// Дополнительные цвета
+$color-focus: rgba(16, 185, 129, 0.35);
+$color-danger: #ef4444;
+
+// Радиусы и тени
+$radius: 12px;
+$shadow: 0 6px 18px rgba(17, 24, 39, 0.06);
+
+// Шрифты
+$font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+// Темная тема
+[data-theme='dark'] {
+    --color-bg: #1a1a1a;
+    --color-surface: #242424;
+    --color-card: #2a2a2a;
+    --color-border: #3a3a3a;
+    --color-text-primary: #e0e0e0;
+    --color-text-secondary: #a0a0a0;
+    --color-brand-500: #10b981;
+    --color-brand-600: #059669;
+    --color-focus: rgba(16, 185, 129, 0.35);
+    --color-danger: #ef4444;
+    --shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+

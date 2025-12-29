@@ -1,0 +1,184 @@
+@use './variables' as *;
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+
+    &.open {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    @media (min-width: 1024px) {
+        display: none;
+    }
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    max-width: 320px;
+    height: 100vh;
+    background-color: $color-card;
+    border-right: 1px solid $color-border;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease;
+    overflow-y: auto;
+
+    [data-theme='dark'] & {
+        background-color: var(--color-card);
+        border-color: var(--color-border);
+        box-shadow: 4px 0 12px rgba(0, 0, 0, 0.5);
+    }
+
+    &.open {
+        left: 0;
+    }
+
+    @media (min-width: 1024px) {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        max-height: 100vh;
+        border-right: 1px solid $color-border;
+        box-shadow: none;
+        border-radius: 0;
+        width: 280px;
+        display: flex;
+
+        [data-theme='dark'] & {
+            border-color: var(--color-border);
+        }
+
+        // На десктопе скрываем только если явно закрыт
+        &:not(.open) {
+            left: -280px;
+        }
+    }
+
+    .sidebar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem;
+        border-bottom: 1px solid $color-border;
+        flex-shrink: 0;
+
+        [data-theme='dark'] & {
+            border-color: var(--color-border);
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: $color-text-primary;
+
+            [data-theme='dark'] & {
+                color: var(--color-text-primary);
+            }
+        }
+
+        .sidebar-close {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: transparent;
+            color: $color-text-secondary;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+
+            [data-theme='dark'] & {
+                color: var(--color-text-secondary);
+            }
+
+            @media (min-width: 1024px) {
+                display: none;
+            }
+
+            &:hover {
+                background-color: $color-surface;
+                color: $color-text-primary;
+
+                [data-theme='dark'] & {
+                    background-color: var(--color-surface);
+                    color: var(--color-text-primary);
+                }
+            }
+        }
+    }
+
+    .sidebar-nav {
+        flex-shrink: 0;
+        padding: 1rem 0;
+        border-bottom: 1px solid $color-border;
+
+        [data-theme='dark'] & {
+            border-color: var(--color-border);
+        }
+
+        .sidebar-nav-item {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: $color-text-secondary;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+
+            [data-theme='dark'] & {
+                color: var(--color-text-secondary);
+            }
+
+            &:hover {
+                background-color: $color-surface;
+                color: $color-text-primary;
+                border-left-color: $color-brand-400;
+
+                [data-theme='dark'] & {
+                    background-color: var(--color-surface);
+                    color: var(--color-text-primary);
+                    border-left-color: $color-brand-500;
+                }
+            }
+
+            &.active {
+                background-color: $color-surface;
+                color: $color-brand-600;
+                border-left-color: $color-brand-500;
+                font-weight: 600;
+
+                [data-theme='dark'] & {
+                    background-color: var(--color-surface);
+                    color: $color-brand-400;
+                    border-left-color: $color-brand-400;
+                }
+            }
+        }
+    }
+
+    .sidebar-toc {
+        flex: 1;
+        overflow-y: auto;
+    }
+}
+

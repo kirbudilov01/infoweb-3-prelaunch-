@@ -1,0 +1,188 @@
+@use './variables' as *;
+
+.docs-header {
+    background-color: $color-card;
+    border-bottom: 1px solid $color-border;
+    padding: 1.5rem 2rem;
+    box-shadow: $shadow;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    // Градиент для светлой темы (от зеленого к белому, с верхнего левого угла в нижний правый)
+    [data-theme='light'] & {
+        background: linear-gradient(135deg, $color-brand-500 0%, $color-card 100%);
+    }
+
+
+    .docs-header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: $color-text-primary;
+        line-height: 1.2;
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: block;
+        }
+
+        .header-title-brand {
+            font-weight: 800;
+            font-size: 1.1em;
+            letter-spacing: -0.02em;
+
+            [data-theme='light'] & {
+                color: $color-brand-700;
+                text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+            }
+
+            [data-theme='dark'] & {
+                background: linear-gradient(135deg, $color-brand-400 0%, $color-brand-600 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+        }
+
+        .header-title-text {
+            font-weight: 600;
+            font-size: 0.9em;
+
+            [data-theme='light'] & {
+                color: rgba(255, 255, 255, 0.85);
+            }
+
+            [data-theme='dark'] & {
+                color: var(--color-text-primary);
+            }
+        }
+
+        // В светлой теме текст на градиенте должен быть белым
+        [data-theme='light'] & {
+            a:hover {
+                .header-title-brand {
+                    color: white;
+                    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+                }
+
+                .header-title-text {
+                    color: rgba(255, 255, 255, 0.95);
+                }
+            }
+        }
+
+        [data-theme='dark'] & {
+            a:hover {
+                .header-title-brand {
+                    background: linear-gradient(135deg, $color-brand-300 0%, $color-brand-500 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                }
+            }
+        }
+    }
+
+    .docs-header-controls {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .locale-switcher {
+        display: flex;
+        gap: 0.25rem;
+        background-color: $color-surface;
+        border-radius: 6px;
+        padding: 0.25rem;
+        border: 1px solid $color-border;
+
+        [data-theme='light'] & {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .locale-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: transparent;
+            color: $color-text-secondary;
+            font-weight: 500;
+            font-size: 0.875rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+
+            [data-theme='light'] & {
+                color: rgba(255, 255, 255, 0.8);
+            }
+
+            &:hover {
+                background-color: $color-surface;
+                color: $color-text-primary;
+
+                [data-theme='light'] & {
+                    background-color: rgba(255, 255, 255, 0.1);
+                    color: white;
+                }
+            }
+
+            &.active {
+                background-color: $color-brand-500;
+                color: white;
+
+                [data-theme='light'] & {
+                    background-color: rgba(255, 255, 255, 0.3);
+                    color: white;
+                }
+            }
+        }
+    }
+
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+        border: 1px solid $color-border;
+        border-radius: 50%;
+        background-color: $color-card;
+        color: $color-text-primary;
+        font-size: 1.25rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+
+        [data-theme='light'] & {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        &:hover {
+            background-color: $color-surface;
+            transform: scale(1.05);
+
+            [data-theme='light'] & {
+                background-color: rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+}
+

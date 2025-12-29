@@ -1,0 +1,320 @@
+export const en = {
+  common: {
+    title: 'FABRICBOT ECOSYSTEM Documentation',
+    footer: '© 2025 FABRICBOT ECOSYSTEM. All rights reserved.',
+    footerSwagger: 'Try API in Swagger UI',
+    backToHome: '← Back to home',
+    pageNotFound: 'Page not found',
+    pageNotFoundDesc: 'Documentation for this page has not been created yet.',
+  },
+  home: {
+    hero: {
+      title: 'Welcome to FABRICBOT ECOSYSTEM Documentation',
+      description: 'Complete guide to using and integrating with the FABRICBOT ECOSYSTEM platform',
+    },
+    sections: {
+      gettingStarted: {
+        title: 'Getting Started',
+        description: 'Quick start with Integration API',
+      },
+      integrationAPI: {
+        title: 'Integration API',
+        description: 'API for integrating payments into your application',
+      },
+      testPayments: {
+        title: 'Test Payments',
+        description: 'Examples and instructions for testing the API',
+      },
+    },
+  },
+  gettingStarted: {
+    title: 'Getting Started',
+    intro: {
+      title: 'Introduction',
+      text: 'Integration API allows external applications to integrate payments through the FABRICBOT ECOSYSTEM Telegram application. Users can pay for goods and services using their internal balance in the app.',
+    },
+    quickStart: {
+      title: 'Quick Start',
+      step1: {
+        title: '1. Registration',
+        text: 'To get started, you need to register through the Telegram bot.',
+      },
+      step2: {
+        title: '2. Create API Key',
+        text: 'Go to Editor → API Keys in the Telegram app and create an API key for API access.',
+      },
+      step3: {
+        title: '3. First Integration',
+        text: 'Use our Integration API to create payment requests and manage the referral program.',
+      },
+    },
+    nextSteps: {
+      title: 'Next Steps',
+      item1: 'Study the Integration API documentation',
+      item2: 'Create your first payment request',
+      item3: 'Set up webhook to receive notifications',
+    },
+  },
+  integrationAPI: {
+    title: 'Integration API',
+    overview: {
+      title: 'Overview',
+      text: 'Integration API allows external applications to integrate payments through the FABRICBOT ECOSYSTEM Telegram application. Users can pay for goods and services using their internal balance in the app.',
+    },
+    baseUrl: {
+      title: 'Base URL',
+      production: 'Production:',
+      development: 'Development:',
+    },
+    auth: {
+      title: 'Authentication',
+      text: 'All requests require a developer API key in the header:',
+      note: 'You can get an API key in the Editor → API Keys section in the Telegram app.',
+    },
+    requestSigning: {
+      title: 'Request Signing',
+      text: 'For additional security, it is recommended to sign requests using HMAC-SHA256. Signing is optional but strongly recommended for production environments.',
+      howToSign: {
+        title: 'How to sign a request',
+        step1: 'Create a canonical JSON string from the request body (sorted keys, no spaces)',
+        step2: 'Calculate HMAC-SHA256 signature using your API key as the secret',
+        step3: 'Add the signature to the X-Request-Signature header',
+      },
+      important: {
+        title: 'Important about signing',
+        fieldsNote: 'The signature is calculated from ALL fields you send in the request body. If you send only amount and webhookUrl, the signature should be calculated only from these fields. If you add metadata or isTest, these fields must also be included in the signature.',
+        canonicalFormat: 'Use canonical JSON format: sorted keys, no spaces. This ensures the signature will be the same regardless of the field order in your code.',
+      },
+      example: {
+        title: 'Request signing example',
+        description: 'Example signature generation in different languages:',
+      },
+      webhookSigning: {
+        title: 'Webhook signature verification',
+        text: 'Each webhook request you receive contains an X-Webhook-Signature header with HMAC-SHA256 signature. You must verify this signature to confirm the authenticity of the request.',
+        example: 'Example webhook signature verification:',
+      },
+    },
+    howItWorks: {
+      title: 'How it works',
+      step1: 'Your application creates a payment request via API',
+      step2: 'Receives a Telegram deep link for payment',
+      step3: 'Redirects the user to this link',
+      step4: 'User opens the Telegram app with a payment modal',
+      step5: 'After confirmation/rejection, a notification is sent to your webhook URL',
+    },
+    endpoints: {
+      title: 'Endpoints',
+      create: {
+        title: 'POST /payment-request/create',
+        description: 'Creates a new payment request and returns a Telegram deep link.',
+        requestTitle: 'Request:',
+        responseSuccessTitle: 'Response (success):',
+        responseErrorTitle: 'Response (error):',
+        paramsTitle: 'Request parameters:',
+        paramAmount: 'Payment amount in FBC (minimum 1)',
+        paramWebhookUrl: 'URL for sending webhook notification (HTTPS recommended)',
+        paramDescription: 'Payment description (max 500 characters)',
+        paramMetadata: 'JSON string with additional data (max 200 characters)',
+        paramIdempotencyKey: 'Idempotency key for requests (max 128 characters)',
+        paramIsTest: 'Test payment flag. If `true`, payment will not deduct balance and will not update statistics, but will go through full processing cycle and send webhook',
+        tableHeader: {
+          parameter: 'Parameter',
+          type: 'Type',
+          required: 'Required',
+          description: 'Description',
+        },
+        tableValues: {
+          yes: 'Yes',
+          no: 'No',
+        },
+      },
+      testWebhook: {
+        title: 'POST /payment-request/webhook/test',
+        description: 'Checks webhook URL availability before creating a payment request.',
+        requestTitle: 'Request:',
+        responseTitle: 'Response:',
+      },
+      status: {
+        title: 'GET /payment-request/status/:requestId',
+        description: 'Gets payment request status and webhook delivery information.',
+        requestTitle: 'Request:',
+        responseTitle: 'Response:',
+      },
+    },
+    webhooks: {
+      title: 'Webhook notifications',
+      text: 'After the user processes the payment (confirmation/rejection), a POST request is sent to the specified webhookUrl.',
+      formatTitle: 'Webhook format:',
+      statusesTitle: 'Statuses:',
+      statusApproved: 'payment confirmed',
+      statusRejected: 'payment rejected',
+      statusExpired: 'request expired',
+      securityTitle: 'Webhook security:',
+      securityText: 'Each webhook request contains an X-Webhook-Signature header with HMAC-SHA256 signature of the payload. Always verify the signature to confirm the authenticity of the request.',
+      retryTitle: 'Retry mechanism:',
+      retryText: 'Webhook is sent with automatic retries (up to 5 times) with exponential backoff for temporary errors.',
+    },
+    examples: {
+      title: 'Code examples',
+      jsTitle: 'JavaScript/TypeScript',
+      pythonTitle: 'Python',
+      curlTitle: 'cURL',
+    },
+    testData: {
+      title: 'Test data',
+      text: 'For testing, you can use the following data:',
+      apiKey: 'Test API key:',
+      apiKeyNote: 'Get it in the Editor → API Keys section in the Telegram app',
+      webhookUrl: 'Test webhook URL:',
+      webhookUrlNote: 'Use a service like webhook.site for testing or set up a local tunnel via ngrok',
+      exampleTitle: 'Example test request:',
+    },
+    swagger: {
+      title: 'Swagger documentation',
+      text: 'Interactive documentation is available at:',
+      linkText: 'Open Swagger UI',
+      note: 'There you can test all endpoints in real time.',
+    },
+  },
+  testPayments: {
+    title: 'Test Payments',
+    overview: {
+      title: 'Overview',
+      text: 'This page contains examples and instructions for testing the Integration API. Use this data to verify your integration before moving to production.',
+    },
+    testData: {
+      title: 'Test data',
+      apiKey: {
+        title: 'Test API key',
+        step1: 'Open the FABRICBOT ECOSYSTEM Telegram app',
+        step2: 'Go to Editor → API Keys',
+        step3: 'Create a new API key',
+        step4: 'Copy the key and use it in the X-API-Key header',
+      },
+      webhookUrl: {
+        title: 'Test webhook URL',
+        text: 'To test webhook notifications, you can use the following services:',
+        webhookSite: 'Generates a unique URL for receiving webhook requests. Just copy the URL and use it as webhookUrl.',
+        ngrok: 'Creates a tunnel to your local server. Useful for testing on a local machine.',
+        requestBin: 'Alternative service for testing webhook requests.',
+      },
+    },
+    examples: {
+      title: 'Interactive examples',
+      text: 'Try executing requests right here by entering your API key and data:',
+      example1: {
+        title: '1. Simple payment request',
+        description: 'Minimum request with required fields: amount and webhookUrl',
+      },
+      example2: {
+        title: '2. Payment with description',
+        description: 'Request with description that the user will see in the payment modal',
+      },
+      example3: {
+        title: '3. Payment with metadata',
+        description: 'Request with metadata that will be passed in the webhook notification',
+      },
+      example4: {
+        title: '4. Payment with idempotency key',
+        description: 'Request with idempotencyKey - when resending with the same key, the same result will be returned',
+      },
+      example5: {
+        title: '5. Test payment (no balance deduction)',
+        description: 'Payment with isTest: true flag. Balance is not deducted, statistics are not updated, but webhook is sent as usual',
+      },
+      example6: {
+        title: '6. Webhook URL check',
+        description: 'Check webhook URL availability. Make sure the URL is accessible and returns status 200-299',
+      },
+      example7: {
+        title: '7. Payment status check',
+        description: 'Check payment request status. Enter the request ID from the payment creation response.',
+      },
+    },
+    curl: {
+      title: 'Testing with cURL',
+      createTitle: 'Creating a payment request',
+      testWebhookTitle: 'Checking webhook URL',
+      statusTitle: 'Checking payment status',
+    },
+    js: {
+      title: 'Testing with JavaScript/TypeScript',
+    },
+    python: {
+      title: 'Testing with Python',
+    },
+    responses: {
+      title: 'Expected responses',
+      successTitle: 'Success response',
+      validationErrorTitle: 'Validation error',
+      authErrorTitle: 'Authentication error',
+    },
+    webhookTesting: {
+      title: 'Testing webhook notifications',
+      formatTitle: 'Webhook request format',
+      text: 'After confirming or rejecting the payment, a POST request will be sent to your webhook URL:',
+      statusesTitle: 'Payment statuses',
+      statusApproved: 'payment confirmed by user',
+      statusRejected: 'payment rejected by user',
+      statusExpired: 'payment request expired (30 minutes)',
+    },
+    checklist: {
+      title: 'Testing checklist',
+      item1: 'API key created in Telegram app',
+      item2: 'Webhook URL configured (webhook.site or ngrok)',
+      item3: 'Payment request creation endpoint tested',
+      item4: 'Data validation checked (minimum amount, URL format)',
+      item5: 'Webhook URL check endpoint tested',
+      item6: 'Error handling checked (invalid API key, invalid data)',
+      item7: 'Full cycle tested: creation → payment → webhook notification',
+      item8: 'Webhook signature verification checked (X-Webhook-Signature)',
+      item9: 'Payment status endpoint tested',
+      item10: 'Request idempotency checked (idempotencyKey)',
+    },
+    commonIssues: {
+      title: 'Common issues',
+      issue1: {
+        title: 'Error "Developer API key is required"',
+        cause: 'API key not provided or provided in incorrect format.',
+        solution: 'Make sure the X-API-Key header is present and contains a valid key.',
+      },
+      issue2: {
+        title: 'Error "Webhook URL is not accessible"',
+        cause: 'Webhook URL is not accessible or does not respond correctly.',
+        solution: 'Check URL availability, use HTTPS in production, make sure the server returns status 200-299.',
+      },
+      issue3: {
+        title: 'Webhook not received',
+        cause: 'User did not confirm/reject the payment, or webhook URL is not accessible.',
+        solution: 'Check payment status via /status endpoint, make sure the user processed the payment in the Telegram app.',
+      },
+    },
+    swagger: {
+      title: 'Swagger UI for testing',
+      text: 'For interactive API testing, use Swagger UI:',
+      linkText: 'Open Swagger UI',
+      note: 'Swagger UI allows you to test all API endpoints interactively without writing code.',
+      features: {
+        title: 'In Swagger UI you can:',
+        item1: 'Enter your API key once',
+        item2: 'Test all endpoints in real time',
+        item3: 'See request and response examples',
+        item4: 'Check data schemas',
+      },
+    },
+  },
+  interactive: {
+    apiKey: 'API Key (X-API-Key)',
+    apiKeyPlaceholder: 'Enter your API key',
+    requestBody: 'Request body (JSON)',
+    requestBodyPlaceholder: '{"amount": 10, "webhookUrl": "https://..."}',
+    submit: 'Execute request',
+    submitting: 'Sending...',
+    error: 'Error:',
+    response: 'Response',
+    expand: '▶',
+    collapse: '▼',
+  },
+};
+
