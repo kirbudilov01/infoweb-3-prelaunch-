@@ -7,9 +7,9 @@ const DocsHome = () => {
 
   const sections = [
     {
-      title: t.home.sections.gettingStarted.title,
-      description: t.home.sections.gettingStarted.description,
-      link: '/getting-started'
+      title: t.home.sections.product.title,
+      description: t.home.sections.product.description,
+      link: '/product'
     },
     {
       title: t.home.sections.integrationAPI.title,

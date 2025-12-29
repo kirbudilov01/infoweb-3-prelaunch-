@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { useRef, useEffect } from 'react';
 import '../scss/DocsPage.scss';
-import GettingStarted from './docs/GettingStarted';
+import Product from './docs/Product';
 import IntegrationAPI from './docs/IntegrationAPI';
 import TestPayments from './docs/TestPayments';
 import { useLocale } from '../hooks/useLocale';
@@ -17,11 +17,11 @@ const DocsPage = () => {
   useEffect(() => {
     const localRef = localContentRef.current;
     const globalRef = contentRef as React.MutableRefObject<HTMLDivElement | null>;
-    
+
     if (localRef) {
       globalRef.current = localRef;
     }
-    
+
     return () => {
       if (globalRef.current === localRef) {
         globalRef.current = null;
@@ -30,7 +30,7 @@ const DocsPage = () => {
   }, [contentRef, page]);
 
   const pageComponents: Record<string, React.ComponentType> = {
-    'getting-started': GettingStarted,
+    'product': Product,
     'integration-api': IntegrationAPI,
     'test-payments': TestPayments,
   };

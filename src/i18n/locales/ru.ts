@@ -13,9 +13,9 @@ export const ru = {
       description: 'Полное руководство по использованию и интеграции с платформой FABRICBOT ECOSYSTEM',
     },
     sections: {
-      gettingStarted: {
-        title: 'Начало работы',
-        description: 'Быстрый старт с Integration API',
+      product: {
+        title: 'Product',
+        description: 'Обзор платформы FABRICBOT, компоненты экосистемы и варианты использования',
       },
       integrationAPI: {
         title: 'Integration API',
@@ -27,32 +27,14 @@ export const ru = {
       },
     },
   },
-  gettingStarted: {
-    title: 'Начало работы',
-    intro: {
-      title: 'Введение',
-      text: 'Integration API позволяет внешним приложениям интегрировать платежи через Telegram приложение FABRICBOT ECOSYSTEM. Пользователи могут оплачивать товары и услуги используя свой внутренний баланс в приложении.',
-    },
-    quickStart: {
-      title: 'Быстрый старт',
-      step1: {
-        title: '1. Регистрация',
-        text: 'Для начала работы необходимо зарегистрироваться через Telegram бота.',
-      },
-      step2: {
-        title: '2. Создание API ключа',
-        text: 'Перейдите в раздел Editor → API Ключи в Telegram приложении и создайте API ключ для доступа к API.',
-      },
-      step3: {
-        title: '3. Первая интеграция',
-        text: 'Используйте наш Integration API для создания платежных запросов и управления реферальной программой.',
-      },
-    },
-    nextSteps: {
-      title: 'Следующие шаги',
-      item1: 'Изучите Integration API документацию',
-      item2: 'Создайте свой первый платежный запрос',
-      item3: 'Настройте webhook для получения уведомлений',
+  product: {
+    title: 'Product',
+    nav: {
+      mainFeatures: 'Main Features',
+      components: 'Components of Ecosystem',
+      useCases: 'Use Cases',
+      security: 'Security and On-Chain Logic',
+      openApi: 'Open API and Scaling',
     },
   },
   integrationAPI: {

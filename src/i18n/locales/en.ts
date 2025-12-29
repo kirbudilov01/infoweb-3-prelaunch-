@@ -13,9 +13,9 @@ export const en = {
       description: 'Complete guide to using and integrating with the FABRICBOT ECOSYSTEM platform',
     },
     sections: {
-      gettingStarted: {
-        title: 'Getting Started',
-        description: 'Quick start with Integration API',
+      product: {
+        title: 'Product',
+        description: 'Overview of the FABRICBOT platform, ecosystem components and use cases',
       },
       integrationAPI: {
         title: 'Integration API',
@@ -27,32 +27,14 @@ export const en = {
       },
     },
   },
-  gettingStarted: {
-    title: 'Getting Started',
-    intro: {
-      title: 'Introduction',
-      text: 'Integration API allows external applications to integrate payments through the FABRICBOT ECOSYSTEM Telegram application. Users can pay for goods and services using their internal balance in the app.',
-    },
-    quickStart: {
-      title: 'Quick Start',
-      step1: {
-        title: '1. Registration',
-        text: 'To get started, you need to register through the Telegram bot.',
-      },
-      step2: {
-        title: '2. Create API Key',
-        text: 'Go to Editor → API Keys in the Telegram app and create an API key for API access.',
-      },
-      step3: {
-        title: '3. First Integration',
-        text: 'Use our Integration API to create payment requests and manage the referral program.',
-      },
-    },
-    nextSteps: {
-      title: 'Next Steps',
-      item1: 'Study the Integration API documentation',
-      item2: 'Create your first payment request',
-      item3: 'Set up webhook to receive notifications',
+  product: {
+    title: 'Product',
+    nav: {
+      mainFeatures: 'Main Features',
+      components: 'Components of Ecosystem',
+      useCases: 'Use Cases',
+      security: 'Security and On-Chain Logic',
+      openApi: 'Open API and Scaling',
     },
   },
   integrationAPI: {

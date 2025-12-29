@@ -55,11 +55,11 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
             {t.home.hero.title}
           </Link>
           <Link
-            to="/getting-started"
-            className={`sidebar-nav-item ${location.pathname === '/getting-started' ? 'active' : ''}`}
+            to="/product"
+            className={`sidebar-nav-item ${location.pathname === '/product' ? 'active' : ''}`}
             onClick={onClose}
           >
-            {t.home.sections.gettingStarted.title}
+            {t.home.sections.product.title}
           </Link>
           <Link
             to="/integration-api"
