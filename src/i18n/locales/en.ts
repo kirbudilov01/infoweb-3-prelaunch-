@@ -1,15 +1,15 @@
 export const en = {
   common: {
-    title: 'FABRICBOT ECOSYSTEM Documentation',
+    title: 'FABRICBOT ECOSYSTEM',
     footer: '© 2025 FABRICBOT ECOSYSTEM. All rights reserved.',
     footerSwagger: 'Try API in Swagger UI',
     backToHome: '← Back to home',
     pageNotFound: 'Page not found',
-    pageNotFoundDesc: 'Documentation for this page has not been created yet.',
+    pageNotFoundDesc: 'This page has not been created yet.',
   },
   home: {
     hero: {
-      title: 'Welcome to FABRICBOT ECOSYSTEM Documentation',
+      title: 'Welcome to FABRICBOT ECOSYSTEM',
       description: 'Complete guide to using and integrating with the FABRICBOT ECOSYSTEM platform',
     },
     sections: {

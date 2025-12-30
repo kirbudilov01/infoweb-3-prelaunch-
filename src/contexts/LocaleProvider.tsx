@@ -8,7 +8,7 @@ const STORAGE_KEY = 'docs-locale';
 export const LocaleProvider = ({ children }: { children: ReactNode }) => {
   const [locale, setLocaleState] = useState<Locale>(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
-    return (saved as Locale) || 'ru';
+    return (saved as Locale) || 'en';
   });
 
   useEffect(() => {
