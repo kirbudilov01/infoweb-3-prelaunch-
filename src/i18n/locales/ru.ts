@@ -17,13 +17,17 @@ export const ru = {
         title: 'Product',
         description: 'Обзор платформы FABRICBOT, компоненты экосистемы и варианты использования',
       },
-      integrationAPI: {
-        title: 'Integration API',
-        description: 'API для интеграции платежей в ваше приложение',
+      roadmap: {
+        title: 'Roadmap',
+        description: 'Этапы развития и долгосрочное видение',
       },
-      testPayments: {
-        title: 'Тестовые платежи',
-        description: 'Примеры и инструкции для тестирования API',
+      team: {
+        title: 'Team and Contributors',
+        description: 'Познакомьтесь с основателями и основной командой FABRICBOT',
+      },
+      token: {
+        title: 'Token',
+        description: 'Логика токенов и интеграция в экосистему',
       },
     },
   },

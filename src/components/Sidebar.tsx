@@ -62,18 +62,25 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
             {t.home.sections.product.title}
           </Link>
           <Link
-            to="/integration-api"
-            className={`sidebar-nav-item ${location.pathname === '/integration-api' ? 'active' : ''}`}
+            to="/roadmap"
+            className={`sidebar-nav-item ${location.pathname === '/roadmap' ? 'active' : ''}`}
             onClick={onClose}
           >
-            {t.home.sections.integrationAPI.title}
+            {t.home.sections.roadmap.title}
           </Link>
           <Link
-            to="/test-payments"
-            className={`sidebar-nav-item ${location.pathname === '/test-payments' ? 'active' : ''}`}
+            to="/team"
+            className={`sidebar-nav-item ${location.pathname === '/team' ? 'active' : ''}`}
             onClick={onClose}
           >
-            {t.home.sections.testPayments.title}
+            {t.home.sections.team.title}
+          </Link>
+          <Link
+            to="/token"
+            className={`sidebar-nav-item ${location.pathname === '/token' ? 'active' : ''}`}
+            onClick={onClose}
+          >
+            {t.home.sections.token.title}
           </Link>
         </nav>
         {isDocumentationPage && contentRef && (

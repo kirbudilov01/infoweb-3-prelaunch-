@@ -17,13 +17,17 @@ export const en = {
         title: 'Product',
         description: 'Overview of the FABRICBOT platform, ecosystem components and use cases',
       },
-      integrationAPI: {
-        title: 'Integration API',
-        description: 'API for integrating payments into your application',
+      roadmap: {
+        title: 'Roadmap',
+        description: 'Development stages and long-term vision',
       },
-      testPayments: {
-        title: 'Test Payments',
-        description: 'Examples and instructions for testing the API',
+      team: {
+        title: 'Team and Contributors',
+        description: 'Meet the founders and core team behind FABRICBOT',
+      },
+      token: {
+        title: 'Token',
+        description: 'Token logic and ecosystem integration',
       },
     },
   },

@@ -2,8 +2,9 @@ import { useParams, Link } from 'react-router-dom';
 import { useRef, useEffect } from 'react';
 import '../scss/DocsPage.scss';
 import Product from './docs/Product';
-import IntegrationAPI from './docs/IntegrationAPI';
-import TestPayments from './docs/TestPayments';
+import Roadmap from './docs/Roadmap';
+import Team from './docs/Team';
+import Token from './docs/Token';
 import { useLocale } from '../hooks/useLocale';
 import { useContentRef } from '../hooks/useContentRef';
 
@@ -31,8 +32,9 @@ const DocsPage = () => {
 
   const pageComponents: Record<string, React.ComponentType> = {
     'product': Product,
-    'integration-api': IntegrationAPI,
-    'test-payments': TestPayments,
+    'roadmap': Roadmap,
+    'team': Team,
+    'token': Token,
   };
 
   const PageComponent = page ? pageComponents[page] : null;

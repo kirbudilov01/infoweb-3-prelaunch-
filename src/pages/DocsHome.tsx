@@ -12,14 +12,19 @@ const DocsHome = () => {
       link: '/product'
     },
     {
-      title: t.home.sections.integrationAPI.title,
-      description: t.home.sections.integrationAPI.description,
-      link: '/integration-api'
+      title: t.home.sections.roadmap.title,
+      description: t.home.sections.roadmap.description,
+      link: '/roadmap'
     },
     {
-      title: t.home.sections.testPayments.title,
-      description: t.home.sections.testPayments.description,
-      link: '/test-payments'
+      title: t.home.sections.team.title,
+      description: t.home.sections.team.description,
+      link: '/team'
+    },
+    {
+      title: t.home.sections.token.title,
+      description: t.home.sections.token.description,
+      link: '/token'
     }
   ];
 
