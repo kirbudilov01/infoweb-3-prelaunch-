@@ -10,7 +10,7 @@ export const ru = {
   home: {
     hero: {
       title: 'Добро пожаловать в документацию FABRICBOT ECOSYSTEM',
-      description: 'Полное руководство по использованию и интеграции с платформой FABRICBOT ECOSYSTEM',
+      description: 'Информация о продукте, проекте, наша стратегия и планы развития',
     },
     sections: {
       product: {
@@ -26,8 +26,16 @@ export const ru = {
         description: 'Познакомьтесь с основателями и основной командой FABRICBOT',
       },
       token: {
-        title: 'Token',
+        title: 'Token Launch',
         description: 'Логика токенов и интеграция в экосистему',
+      },
+      partners: {
+        title: 'Partners on API',
+        description: 'Партнеры и интеграции (в разработке)',
+      },
+      future: {
+        title: 'Future inside TON',
+        description: 'Будущие возможности на блокчейне TON (в разработке)',
       },
     },
   },

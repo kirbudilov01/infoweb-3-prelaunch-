@@ -10,7 +10,7 @@ export const en = {
   home: {
     hero: {
       title: 'Welcome to FABRICBOT ECOSYSTEM',
-      description: 'Complete guide to using and integrating with the FABRICBOT ECOSYSTEM platform',
+      description: 'About the company, project, products, and development plans',
     },
     sections: {
       product: {
@@ -26,8 +26,16 @@ export const en = {
         description: 'Meet the founders and core team behind FABRICBOT',
       },
       token: {
-        title: 'Token',
+        title: 'Token Launch',
         description: 'Token logic and ecosystem integration',
+      },
+      partners: {
+        title: 'Partners on API',
+        description: 'Partners and integrations (in development)',
+      },
+      future: {
+        title: 'Future inside TON',
+        description: 'Future capabilities on TON blockchain (in development)',
       },
     },
   },

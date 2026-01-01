@@ -32,6 +32,13 @@ const Header = () => {
             >
               EN
             </button>
+            <button
+              className={`locale-button ${locale === 'zh' ? 'active' : ''}`}
+              onClick={() => setLocale('zh')}
+              title="中文"
+            >
+              ZH
+            </button>
           </div>
           <button
             className="theme-toggle"

@@ -73,16 +73,20 @@
     .docs-section-card {
         background-color: $color-card;
         border: 1px solid $color-border;
+        border-left: 4px solid $color-brand-500;
         border-radius: $radius;
         padding: 2rem;
         text-decoration: none;
         color: inherit;
         transition: all 0.2s ease;
         box-shadow: $shadow;
+        position: relative;
+        overflow: hidden;
 
         [data-theme='dark'] & {
             background-color: var(--color-card);
             border-color: var(--color-border);
+            border-left-color: $color-brand-500;
             box-shadow: var(--shadow);
         }
 
@@ -90,11 +94,34 @@
             transform: translateY(-4px);
             box-shadow: 0 12px 24px rgba(17, 24, 39, 0.1);
             border-color: $color-brand-300;
+            border-left-color: $color-brand-600;
 
             [data-theme='dark'] & {
                 box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
                 border-color: $color-brand-500;
+                border-left-color: $color-brand-400;
             }
+        }
+
+        .card-number {
+            position: absolute;
+            top: -0.5rem;
+            left: 1.5rem;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: $color-brand-500;
+            opacity: 0.15;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            line-height: 1;
+
+            [data-theme='dark'] & {
+                color: $color-brand-400;
+            }
+        }
+
+        &:hover .card-number {
+            opacity: 0.25;
         }
 
         h2 {
